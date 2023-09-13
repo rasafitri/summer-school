@@ -1,0 +1,9 @@
+[submodule "esp-webserver"]
+	path = esp-webserver
+	url = git@github.com:rasafitri/esp-webserver.git
+[submodule "webclient-upload"]
+	path = webclient-upload
+	url = git@github.com:rasafitri/webclient-upload.git
+[submodule "matrix-example"]
+	path = matrix-example
+	url = git@github.com:rasafitri/matrix-example.git
