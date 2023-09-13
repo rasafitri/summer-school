@@ -1,0 +1,1625 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Summer School 2023 - Prototyping für ein gesundes Berlin</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="83385a07-0343-4552-b0fe-8f3dcef45921" class="page sans"><header><img class="page-cover-image" src="https://citylab-berlin.org/wp-content/uploads/2021/05/citylab-logo.svg" style="object-position:center 51.2%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="https://www.notion.so/icons/computer-chip_blue.svg"/></div><h1 class="page-title">Summer School 2023 - Prototyping für ein gesundes Berlin</h1><p class="page-description"></p></header><div class="page-body"><figure id="851457e4-1bb5-425e-a17b-eb8266ef3300"><a href="https://github.com/rasafitri/summer-school" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">GitHub - rasafitri/summer-school: Summer School 2023 - Citylab Berlin</div><div class="bookmark-description">Summer School 2023 - Citylab Berlin. Contribute to rasafitri/summer-school development by creating an account on GitHub.</div></div><div class="bookmark-href"><img src="https://github.com/fluidicon.png" class="icon bookmark-icon"/>https://github.com/rasafitri/summer-school</div></div><img src="https://opengraph.githubassets.com/cb65eb38a158548865bcec053719cc1e9b81dc18b761433dd0aa239bc80a014c/rasafitri/summer-school" class="bookmark-image"/></a></figure><nav id="4389ec8d-b467-4c3b-b8b9-a74c4e4d1015" class="block-color-gray_background table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#a7a56e70-dbb9-4485-98db-00ae8aed5e06">Einleitung</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#dfd7d68b-e02a-46ca-80ad-8ce739fa924f"><mark class="highlight-default">Demo</mark></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#f90f86e4-c251-4c80-b558-1f26317a1478">Pipeline zwischen ESP und HUB75 LED-Matrixanzeigetafel</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#b82fb596-a2d2-4c52-ae82-ab4d2f0ae1ce">Was wir brauchen</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#4bce690a-27bd-4c27-be37-8f750b8382f4">Getting Started</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#7b980951-5e08-4cee-a99a-1c848f628b2a">Text und Bild auf der Anzeigetafel anzeigen</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#a6313b37-6103-410a-bbb4-5341e0cd5463"><mark class="highlight-default">Konzept</mark></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1f6bc1c0-5cf9-4d4f-9b1e-b0cb7ead648a">Webclient einrichten</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#04f310b3-45a8-49ee-a6be-7555f28a7aa1">Webserver einrichten und Daten anzeigen</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#a6bffd54-28cd-4486-be47-8fd8a01a5864">Einschränkungen</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#387f3772-5f08-4f40-bbec-5b7abfb2e06a">Troubleshooting</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#c0fa9ec8-1eff-419d-9915-468c081e4bfd">ESP package header timeout</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#f1a5be03-a406-4d1d-ac87-f514a5096637">Anzeigefehler</a></div></nav><h1 id="a7a56e70-dbb9-4485-98db-00ae8aed5e06" class="">Einleitung</h1><p id="44015b0a-12bf-48e2-b553-b68c91d5f8b7" class="">In dieser Anleitung wird ausführlich Schritt für Schritt beschrieben, wie man eine HUB75 LED-Matrixanzeigetafel durch einen ESP32 oder ESP8266 Board steuern kann. Auf der Anzeigetafel können z. B. Texte oder (bewegte) Bilder angezeigt werden. Um das Ganze flexibler zu gestalten, wird das ESP Board als Webserver konfiguriert, damit man die Objekte nicht fest im Code eingeben muss, sondern über den Webclient an den Webserver übermitteln kann.</p><h2 id="dfd7d68b-e02a-46ca-80ad-8ce739fa924f" class=""><mark class="highlight-default">Demo</mark></h2><figure id="9e20047d-2fb6-4e0b-813a-7b442142422b"><div class="source"><video width="640px" height="360px" controls>
+          <source
+            src="index/Demo.mp4"
+            type="video/mp4">
+        </video></div></figure><h2 id="f90f86e4-c251-4c80-b558-1f26317a1478" class="">Pipeline zwischen ESP und HUB75 LED-Matrixanzeigetafel</h2><p id="61257601-7054-45dd-b704-e0c5696542f9" class="">Um das Anzeigen von Bildern oder Texten auf der von einem ESP gesteuerten HUB75 LED-Matrixanzeigetafel flexibler zu gestalten, wird entweder ein ESP32 oder ESP8266 als Webserver konfiguriert als auch eine HTML-Seite als Webclient erstellt. Der Benutzer kann über den Client das anzuzeigende Objekt mit einigen Konfigurationen als ein JSON Objekt in einem HTTP Request an den Server senden. Diese Daten werden dann vom Server empfangen, verarbeitet und anschließend auf der Anzeigetafel angezeigt. Außerdem gibt der Server eine Rückmeldung an den Client, ob der Vorgang erfolgreich abgeschlossen ist oder ob ein Fehler aufgetreten ist.</p><figure id="8961434a-0f48-4437-a446-38c3b3564248" class="image"><a href="index/pipeline.png"><img style="width:1344px" src="index/pipeline.png"/></a></figure><p id="3d11fd06-58d6-46b6-b6b6-d09724b5399a" class="">
+</p><h2 id="b82fb596-a2d2-4c52-ae82-ab4d2f0ae1ce" class="">Was wir brauchen</h2><ul id="09bc6157-6068-4bb4-ab6d-81c783067908" class="bulleted-list"><li style="list-style-type:disc">ESP32 oder ESP8266 Board</li></ul><ul id="95f6e508-1259-4c5d-bd47-67aa555fc09b" class="bulleted-list"><li style="list-style-type:disc">HUB75 LED-Matrixanzeige (hier wird P5-16S-64x32 verwendet)</li></ul><ul id="9ad14f00-5bcf-41b9-a685-f3c0a66b169e" class="bulleted-list"><li style="list-style-type:disc">PC mit Arduino IDE und Visual Studio Code</li></ul><ul id="c7ef1e76-8c32-4a08-b35c-a53b8e886d5d" class="bulleted-list"><li style="list-style-type:disc">WLAN</li></ul><ul id="b1c03404-f2e7-439c-9a60-1d2f51e93416" class="bulleted-list"><li style="list-style-type:disc">Netzteil 5V 15A</li></ul><ul id="cf7036ac-5329-490c-ba0d-82f2c365fcfa" class="bulleted-list"><li style="list-style-type:disc">Kabel Micro USB</li></ul><ul id="3e7c00d1-7764-4b56-a4b2-531925c6873d" class="bulleted-list"><li style="list-style-type:disc">Power Cable</li></ul><ul id="c7fd4c44-b8d9-467f-855a-6cdb08bfe7ed" class="bulleted-list"><li style="list-style-type:disc">Jumper Wire Kabel (F2M &amp; F2F)</li></ul><ul id="be63adc6-656c-4917-a61a-a8204ee21a58" class="bulleted-list"><li style="list-style-type:disc">gute Laune 🙂</li></ul><h1 id="4bce690a-27bd-4c27-be37-8f750b8382f4" class="">Getting Started</h1><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Text und Bild auf der Anzeigetafel anzeigen</summary><div class="indented"><ul id="c01e8cf7-d0ee-4da2-8bd5-fc5803be992f" class="toggle"><li><details open=""><summary>Arduino IDE 2.0 installieren </summary><figure id="c173297d-6be2-4f74-ac1f-dfa289c385df"><a href="https://www.arduino.cc/en/software" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Software</div><div class="bookmark-description">Open-source electronic prototyping platform enabling users to create interactive electronic objects.</div></div><div class="bookmark-href"><img src="https://www.arduino.cc/wiki/icons/icon-512x512.png?v=23330209a9e4870226e34963941206b6" class="icon bookmark-icon"/>https://www.arduino.cc/en/software</div></div><img src="https://content.arduino.cc/assets/arduino_logo_1200x630-01.png" class="bookmark-image"/></a></figure></details></li></ul><ul id="91006eb7-2866-4dc7-b39e-4660cfc48b05" class="toggle"><li><details open=""><summary>ESP32 und ESP8266 libs in Arduino IDE installieren</summary><figure id="eac19c30-2da6-4815-9013-3998b82d439b"><a href="https://www.azdelivery.de/blogs/azdelivery-blog-fur-arduino-und-raspberry-pi/esp32-jetzt-mit-boardverwalter-installieren" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">ESP32 jetzt über den Boardverwalter installieren</div><div class="bookmark-description">Hallo und herzlich willkommen zum heutigen Blog-Beitrag. Der ESP32 ist der Nachfolger des beliebten ESP8266. Wir bieten ihn in verschiedenen Versionen an. Von der schmalen breadboardfreundlichen ESP32S-Kit Version mit separatem WLAN-Antennenanschluss, über das NodeMCU Development Board bis hin zum Modell mit integriertem OLED und LoRa. Der ESP32 bietet einige Verbesserungen gegenüber dem ESP8266. Neben dem Plus an Rechenleistung und Speicher, und der verbesserten WLAN und Bluetooth 4.2 Unterstützung, bietet der ESP32 eine Vielzahl integrierter Sensoren (Hall, Temperatur, Touch und Puls). Wer schon einen ESP32 in Betrieb genommen hat, kennt das Problem: die Einrichtung erfordert, wie in unserem eBook beschrieben, das Herunterladen der Arduino Core Dateien von Hand. Diese müssen dann entpackt und in einen selbsterstellten Ordner &quot;..\Arduino\hardware\espressif\esp32&quot; kopiert werden. Danach muss im Unterordner &quot;tools&quot; noch die Datei &quot;get.exe&quot; ausgeführt werden. Die gute Nachricht: es kann auch einfacher über den Boardverwalter installiert werden. Falls Sie wie ich die ESP32 Unterstützung</div></div><div class="bookmark-href"><img src="https://www.azdelivery.de/cdn/shop/files/AZ-Delivery_-_Logo_2_1_96x96.png?v=1689163583" class="icon bookmark-icon"/>https://www.azdelivery.de/blogs/azdelivery-blog-fur-arduino-und-raspberry-pi/esp32-jetzt-mit-boardverwalter-installieren</div></div><img src="https://www.azdelivery.de/cdn/shop/articles/esp32-jetzt-uber-den-boardverwalter-installieren-739677.jpg?v=1685407480" class="bookmark-image"/></a></figure><figure id="1550dbe3-5b60-43e5-8620-225176f6c037"><a href="https://arduino-esp8266.readthedocs.io/en/latest/installing.html" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Installing — ESP8266 Arduino Core 3.1.2-17-gb7f7b748 documentation</div></div><div class="bookmark-href"><img src="https://arduino-esp8266.readthedocs.io/favicon.ico" class="icon bookmark-icon"/>https://arduino-esp8266.readthedocs.io/en/latest/installing.html</div></div></a></figure></details></li></ul><ul id="db4202ff-24b7-4897-8e15-6802ff7e12c0" class="toggle"><li><details open=""><summary><code>PxMatrix</code> Bibliothek in Arduino IDE einbinden</summary><figure id="73309df1-a226-4ad3-81b4-22251c42be33"><div class="source">https://github.com/2dom/PxMatrix</div></figure><ul id="ac66a139-d04d-4f9a-8493-ed968097bf19" class="bulleted-list"><li style="list-style-type:disc">master Branch als .zip herunterladen<figure id="d224c9a1-793a-4c56-b4a0-1cdd13495b57" class="image" style="text-align:left"><a href="index/pxmatrix.png"><img style="width:576px" src="index/pxmatrix.png"/></a></figure></li></ul><ul id="5a225625-d531-4b3e-990e-0960a17fb838" class="bulleted-list"><li style="list-style-type:disc">.zip Bibliothek in Arduino IDE einbinden<figure id="7381da24-844f-42c6-8fd2-cf79f734c6f6" class="image"><a href="index/addlib.png"><img style="width:576px" src="index/addlib.png"/></a></figure><p id="c6ab2aa7-4385-4689-b759-d942ffde46d0" class="">Danach wählen Sie bitte die heruntergeladene .zip Datei aus.</p></li></ul></details></li></ul><ul id="3c763ee0-d96c-40cc-8cf8-f33ddcdd4f6c" class="toggle"><li><details open=""><summary>Verkabeln</summary><p id="bed28f09-f8c5-45d7-b5a4-611b2e1e44e5" class="">Skizze der Verkabelung zwischen P5-16S-64x32 und ESP32</p><figure id="069583b3-ff8c-4c86-a669-42abd9d6a175" class="image"><a href="index/verkabelung.png"><img style="width:624px" src="index/verkabelung.png"/></a></figure><ul id="86bed284-8a22-48dd-9383-33d0b8f6d251" class="bulleted-list"><li style="list-style-type:disc">zwischen HUB75 LED-Matrixanzeigetafel und ESP<div id="fbc55079-4f78-4548-a159-8d24f9bff228" class="column-list"><div id="f91fcecf-021c-4c3d-a167-2b80caf532a7" style="width:50.000000000000014%" class="column"><p id="47d4a8cc-7fbb-497a-8c7a-d1fc51e1ce92" class="">Falls auf dem Panel Input R1 oben links ist</p><figure id="1c3f7c1d-9b0c-4620-9835-7183d01d2588" class="image"><a href="index/R1.png"><img style="width:192px" src="index/R1.png"/></a></figure><table id="b82db4ef-12d1-4bce-ac53-cdf5444d3f5f" class="simple-table"><thead class="simple-table-header"><tr id="9e849c38-f763-46d3-98c2-55f0d5497e5b"><th id="OeB=" class="simple-table-header-color simple-table-header">PI</th><th id="qr@T" class="simple-table-header-color simple-table-header">PO</th></tr></thead><tbody><tr id="9cb97c78-2dee-4976-8de8-2e0df4d1fe90"><td id="OeB=" class="">R2</td><td id="qr@T" class="">R1</td></tr><tr id="b9786ce9-c35b-4141-a168-5d7e60fdcef3"><td id="OeB=" class="">G1</td><td id="qr@T" class="">R2</td></tr><tr id="822a5103-a77e-446d-b055-4143b7180628"><td id="OeB=" class="">G2</td><td id="qr@T" class="">G1</td></tr><tr id="eee2850f-7104-4773-83e1-7ff1ab2ceefb"><td id="OeB=" class="">B1</td><td id="qr@T" class="">G2</td></tr><tr id="18f4a60a-cf14-4e41-be23-2b90720bd572"><td id="OeB=" class="">B2</td><td id="qr@T" class="">B1</td></tr></tbody></table><table id="6b2d759c-c0a1-4736-b2d9-c88b0697f55f" class="simple-table"><thead class="simple-table-header"><tr id="dc4aabc0-5037-40ce-9b24-9a6344004545"><th id="&gt;Sja" class="simple-table-header-color simple-table-header">PI</th><th id="sOPJ" class="simple-table-header-color simple-table-header">ESP32 GPIO</th><th id="bOQL" class="simple-table-header-color simple-table-header">ESP8266 GPIO</th></tr></thead><tbody><tr id="96576bea-0f29-4c02-b180-7dc0f2536fd7"><td id="&gt;Sja" class="">R1</td><td id="sOPJ" class="">13 - D13</td><td id="bOQL" class="">13 - D7</td></tr><tr id="0156da23-b9a3-4b4b-a58a-1a3725424101"><td id="&gt;Sja" class="">A</td><td id="sOPJ" class="">19 - D19 </td><td id="bOQL" class="">05 - D1</td></tr><tr id="1dd0a4c4-6da0-4a18-8ddd-05bad171e5d3"><td id="&gt;Sja" class="">B</td><td id="sOPJ" class="">23 - D23</td><td id="bOQL" class="">04 - D2</td></tr><tr id="78c12535-0676-49e8-b4e4-122b9c1dd0f2"><td id="&gt;Sja" class="">C (8S, 16S, 32S)</td><td id="sOPJ" class="">18 - D18</td><td id="bOQL" class="">15 - D8</td></tr><tr id="b0d9a6eb-5c7a-4248-9a6c-29102479c6ca"><td id="&gt;Sja" class="">D (16S, 32S)</td><td id="sOPJ" class="">05 - D5</td><td id="bOQL" class="">23 - D6</td></tr><tr id="e6a2cb28-632c-49b4-8453-845ad051f141"><td id="&gt;Sja" class="">E (nur 32S)</td><td id="sOPJ" class="">15 - D15</td><td id="bOQL" class="">00 - D3</td></tr><tr id="ab24b0a3-ef73-470e-82b9-58dc9bdb42be"><td id="&gt;Sja" class="">CLK</td><td id="sOPJ" class="">14 - D14</td><td id="bOQL" class="">14 - D5</td></tr><tr id="e860e7a3-c812-4b97-ae17-d856cff08953"><td id="&gt;Sja" class="">STB/LAT</td><td id="sOPJ" class="">22 - D22</td><td id="bOQL" class="">16 - D0</td></tr><tr id="450b7bba-4d1c-4d9e-a868-4e7a501380a4"><td id="&gt;Sja" class="">OE</td><td id="sOPJ" class="">16 - RX2</td><td id="bOQL" class="">02 - D4</td></tr><tr id="5189200c-2f33-43f4-b3d5-95927aa376e0"><td id="&gt;Sja" class="">GND</td><td id="sOPJ" class="">GND</td><td id="bOQL" class="">GND</td></tr></tbody></table></div><div id="b21efd0a-91b9-4fad-b7bb-7bb090304140" style="width:50%" class="column"><p id="4e72a7c1-0da2-4043-ad7a-97367a540265" class="">Falls auf dem Panel Input R0 oben links ist</p><figure id="2a95cc65-da8c-4f34-a557-367a16ea09b9" class="image" style="text-align:left"><a href="index/544ec5e7fd867541faa61ac2edcf6f3c893eeb0a.jpg"><img style="width:192px" src="index/544ec5e7fd867541faa61ac2edcf6f3c893eeb0a.jpg"/></a></figure><table id="99147233-dcd8-4bc8-ad9b-c587c8d53811" class="simple-table"><thead class="simple-table-header"><tr id="0934cf5c-588b-4f2b-81b7-0162b2c31bf1"><th id="yP;_" class="simple-table-header-color simple-table-header">PI</th><th id="BoU&gt;" class="simple-table-header-color simple-table-header">PO</th></tr></thead><tbody><tr id="ef7048d8-ad35-4f9d-848d-485191d497b8"><td id="yP;_" class="">R1</td><td id="BoU&gt;" class="">R0</td></tr><tr id="81a85004-c364-4d44-88da-e99c63b08f38"><td id="yP;_" class="">G0</td><td id="BoU&gt;" class="">R1</td></tr><tr id="c0348f0e-c780-4ffa-99a5-5206522fa861"><td id="yP;_" class="">G1</td><td id="BoU&gt;" class="">G0</td></tr><tr id="39e43b42-6a6b-430f-b3d4-3f16aa5ec943"><td id="yP;_" class="">B0</td><td id="BoU&gt;" class="">G1</td></tr><tr id="322a89a2-24de-424c-9594-2baa674160a0"><td id="yP;_" class="">B1</td><td id="BoU&gt;" class="">B0</td></tr></tbody></table><table id="ef971a6f-3bb4-45f0-ab8d-2e287a0933fb" class="simple-table"><thead class="simple-table-header"><tr id="f4c32bb7-3bdd-4d34-9d88-763b6f108924"><th id="kCx\" class="simple-table-header-color simple-table-header">PI</th><th id="JCd{" class="simple-table-header-color simple-table-header">ESP32 GPIO</th><th id="Y[^U" class="simple-table-header-color simple-table-header">ESP8266 GPIO</th></tr></thead><tbody><tr id="a9d33e7a-9e94-404d-afbb-5ad1ab645274"><td id="kCx\" class="">R0</td><td id="JCd{" class="">13 - D13</td><td id="Y[^U" class="">13 - D7</td></tr><tr id="70d4ec1c-2c29-44a1-8ec2-f362184ab6c7"><td id="kCx\" class="">A</td><td id="JCd{" class="">19 - D19 </td><td id="Y[^U" class="">05 - D1</td></tr><tr id="05b710b0-34e5-48d6-bc76-476f109523fb"><td id="kCx\" class="">B</td><td id="JCd{" class="">23 - D23</td><td id="Y[^U" class="">04 - D2</td></tr><tr id="0101d183-1fd5-428e-adcd-1545e274c095"><td id="kCx\" class="">C (8S, 16S, 32S)</td><td id="JCd{" class="">18 - D18</td><td id="Y[^U" class="">15 - D8</td></tr><tr id="fbdf9e39-17df-4b2f-badc-d75bcc6e8de6"><td id="kCx\" class="">D (16S, 32S)</td><td id="JCd{" class="">05 - D5</td><td id="Y[^U" class="">12 - D6</td></tr><tr id="3748cb73-f436-4e2f-9906-13c2bdb1d35d"><td id="kCx\" class="">E (nur 32S)</td><td id="JCd{" class="">15 - D15</td><td id="Y[^U" class="">00 - D3</td></tr><tr id="c9ae0faa-7e92-4b8b-b51a-84c877f2ad13"><td id="kCx\" class="">CLK</td><td id="JCd{" class="">14 - D14</td><td id="Y[^U" class="">14 - D5</td></tr><tr id="b47c87ef-51c4-4a76-b658-2961122e584b"><td id="kCx\" class="">STB/LAT</td><td id="JCd{" class="">22 - D22</td><td id="Y[^U" class="">16 - D0</td></tr><tr id="a8483f6a-fb33-4447-a3d7-721b85a4370f"><td id="kCx\" class="">OE</td><td id="JCd{" class="">16 - RX2</td><td id="Y[^U" class="">02 - D4</td></tr><tr id="d7126ba7-14db-49a0-864c-1140d5a38e4c"><td id="kCx\" class="">GND</td><td id="JCd{" class="">GND</td><td id="Y[^U" class="">GND</td></tr></tbody></table></div></div><p id="7864a91f-2a0e-48f3-a299-c0dd23a1a07f" class=""><strong>Anmerkung</strong>: Pins C, D und E werden nur je nach der Abtastrate der Anzeige benötigt (siehe Tabelle oben). Diese Abtastrate finden Sie auf der Rückseite der Anzeige. Aber, es gibt einige 16S Anzeigen, bei der der E Pin angeschlossen werden muss, da ansonsten Lücken in der Anzeige entstehen können. Sie können überprüfen, ob der Pin angeschlossen werden muss, indem Sie der E Pin gegen <code>GND</code> messen. Falls der Pin mit <code>GND</code> verbunden ist, dann brauchen Sie diesen Pin nicht anschließen.</p></li></ul><ul id="9d24188b-2a00-4b44-a10f-155506b34643" class="bulleted-list"><li style="list-style-type:disc">ESP an PC über USB Kabel verbinden</li></ul><ul id="41e8895f-37bd-4981-99e3-bda9a5ba9b26" class="bulleted-list"><li style="list-style-type:disc">HUB75 LED-Matrixanzeige an Stromversorgung anschließen (nicht in der Skizze dargestellt)</li></ul></details></li></ul><ul id="4db26453-a856-4c78-82c0-80d03dd357c4" class="toggle"><li><details open=""><summary><mark class="highlight-default">Upload Code</mark></summary><figure id="2b543236-a799-4fb4-a65b-caf439a5f8ae"><a href="https://github.com/rasafitri/matrix-example" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title"></div></div><div class="bookmark-href">https://github.com/rasafitri/matrix-example</div></div></a></figure><p id="5f55b145-babd-4bf6-a28c-fcb422ae4f50" class="">Laden Sie den <code>main</code> Branch dieses Repositorys als .zip herunter und entpacken Sie die Datei in Ihren Arbeitsordner. Danach machen Sie die <code>matrix_example.ino</code> Datei mit Arduino IDE auf. Wählen Sie dann das richtige Board (für ESP32 ESP32-WROOM-DA Module oder für ESP8266 NodeMCU 1.0 (ESP-12E Module)) sowie den richtigen Port aus und klicken Sie auf Upload. </p><figure id="ce99939d-fb31-49d6-9d9b-74a5b9c6bccf" class="image" style="text-align:left"><a href="index/Screenshot_(323).png"><img style="width:768px" src="index/Screenshot_(323).png"/></a></figure><p id="23bbdf38-5a5a-4d41-8c51-b553823d73ab" class="">Das Ergebnis soll dann so aussehen, falls nicht, müssen einige Anpassungen an Einstellungen im Setup (mux pattern, scan pattern etc.) vorgenommen werden.</p><figure id="e9c020da-fdc2-4087-bbc4-850e8a0e8cd8"><div class="source"><video width="640px" height="360px" controls>
+          <source
+            src="index/Demo_example.mp4"
+            type="video/mp4">
+          Your browser does not support the video tag.
+        </video></div></figure></details></li></ul><ul id="745bdca6-09f9-4274-8265-6fe6f2bfc670" class="toggle"><li><details open=""><summary>Programmieranleitung</summary><ul id="eaa1de94-e1d7-4c3c-974c-e710eb757de5" class="bulleted-list"><li style="list-style-type:disc">TLDR:<pre id="624eec35-ebe9-4a81-8073-54b0a8f54026" class="code code-wrap"><code>//Auf dem Bildschirm können sowohl Text als auch ein Bild angezeigt werden.
+//Es gibt drei verschiedene Möglichkeiten: scrollText, drawText und drawImage
+void loop() {
+  scrollText(&quot;Herzlich Willkommen zur Summer School 2023!&quot;, myBLUE);  // Willkommenstext (laufend) in blau
+  delay(500);                                                         // kurze Pause
+  drawText(&quot;Bald kommt Youtube Logo!&quot;, myGREEN);                      // Text (stehend) in grün
+  delay(2000);                                                        // 2s Pause
+  drawImage(youtube_logo, imageWidth, imageHeight);                   // Youtube Logo als Bild
+  delay(5000);                                                        // 5s Pause
+}
+
+scrollText(&quot;gewünschtes Text&quot;, dieFarbe) // für einen laufenden Text
+																				 // 2 Argumente: der Text als String und die gewünschte Farbe für den Text.
+
+drawText(&quot;Bald kommt Youtube Logo!&quot;, myGREEN); // für einen stehenden Text
+																							 // Argumente wie &quot;scrollText&quot;
+
+drawImage(youtube_logo, imageWidth, imageHeight); // für ein Bild
+																								  // imageWidth, imageHeight: Bildgröße</code></pre></li></ul><ul id="4ec0a6c9-b207-4336-9798-fd3e66c47c35" class="bulleted-list"><li style="list-style-type:disc">Hinzufügen der erforderlichen Bibliothek<pre id="86bb9a53-ab87-409f-b35b-97a55da6d5c3" class="code code-wrap"><code>// Lib für die Steuerung der Anzeigetafel
+#include &lt;PxMatrix.h&gt;</code></pre></li></ul><ul id="617184b6-8c70-41b0-aa49-a6d5392db6f8" class="bulleted-list"><li style="list-style-type:disc">Alle Pins und Konstante definieren, die benötigt sind. Vergessen Sie nicht, bei Bedarf einige Werte anzupassen.<pre id="7c5cd183-8e05-4ca4-bdf5-3d74d9dbe154" class="code code-wrap"><code>// ----------------------------------------
+// Einstellungen der LED-Matrixanzeigetafel
+// ----------------------------------------
+#define matrix_width 64   // Breite der Anzeige, anzupassen
+#define matrix_height 32  // Höhe der Anzeige, anzupassen
+
+// Pin Belegungen der Anzeige, anzupassen
+#ifdef ESP32
+#define P_A 19
+#define P_B 23
+#define P_C 18
+#define P_D 5
+#define P_E -1  // anzupassen bei Verbindung
+#define P_LAT 22
+#define P_OE 16
+#endif
+
+#ifdef ESP8266
+#define P_A 5
+#define P_B 4
+#define P_C 15
+#define P_D 12
+#define P_E -1  // anzupassen bei Verbindung
+#define P_LAT 16
+#define P_OE 2
+#endif
+
+PxMATRIX display(matrix_width, matrix_height, P_LAT, P_OE, P_A, P_B, P_C, P_D, P_E);
+
+// die Helligkeit der Anzeige, 30-70, je nach Bedarf anpassen
+uint8_t display_draw_time = 60;
+
+// ----------------------------------------
+// Timer für Callbacks
+// ----------------------------------------
+#ifdef ESP32
+hw_timer_t* timer = NULL;
+portMUX_TYPE timerMux = portMUX_INITIALIZER_UNLOCKED;
+#endif
+#ifdef ESP8266
+#include &lt;Ticker.h&gt;
+Ticker display_ticker;
+#endif</code></pre></li></ul><ul id="9f9da658-4b0d-437e-a3d9-ac52e18b1671" class="bulleted-list"><li style="list-style-type:disc">Vordefinierte Farben in RGB für das Text definieren<pre id="3a9e1f3e-0efc-4103-85aa-1364d0185c77" class="code code-wrap"><code>// ----------------------------------------
+// Standard-Farben in RGB565 für Texte
+// ----------------------------------------
+uint16_t myRED = display.color565(255, 0, 0);
+uint16_t myGREEN = display.color565(0, 255, 0);
+uint16_t myBLUE = display.color565(0, 0, 255);
+uint16_t myWHITE = display.color565(255, 255, 255);
+uint16_t myYELLOW = display.color565(255, 255, 0);
+uint16_t myCYAN = display.color565(0, 255, 255);
+uint16_t myMAGENTA = display.color565(255, 0, 255);
+uint16_t myBLACK = display.color565(0, 0, 0);</code></pre></li></ul><ul id="426f988f-2604-4ce5-b268-f367f41b50d3" class="bulleted-list"><li style="list-style-type:disc">Bild definieren. Das Bild mit dem Youtube Logo wird hier als Beispiel verwendet. Das Bild wurde in .c Datei mit diesem ImageConverter (UTFT) umgewandelt. Sie können auch ein anderes Bild verwenden. Achten Sie bitte darauf, dass das Bild kleiner oder genau so groß ist als/wie Ihre Anzeige, damit das Bild nicht abgeschnitten wird. Danach wählen Sie ‘Convert to .c file’ aus und klicken Sie auf ‘Make File’. Die Datei wird dann automatisch heruntergeladen. Öffnen Sie die Datei und kopieren Sie die Hex Werte und fügen Sie diese in Ihren Code ein.<pre id="c27c6425-0a4d-4608-b881-f0072d77fd65" class="code code-wrap"><code>// ----------------------------------------
+// Beispielbild
+// ----------------------------------------
+// ./images/yt-logo.png umgewandelt in .c Datei mit ImageConverter (UTFT) von http://www.rinkydinkelectronics.com/t_imageconverter565.php
+uint16_t static youtube_logo[] = {
+  0x2800, 0x0000, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800,  // 0x0010 (16) pixels
+  0xF800, 0xF800, 0xF800, 0x0000, 0x2800, 0x0000, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800,  // 0x0020 (32) pixels
+  0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0x0000, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800,  // 0x0030 (48) pixels
+  0xF800, 0xF800, 0xFFFF, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800,  // 0x0040 (64) pixels
+  0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xFFFF, 0xFFFF, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800,  // 0x0050 (80) pixels
+  0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xFFFF, 0xFFFF, 0xFFFF, 0xF800,  // 0x0060 (96) pixels
+  0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800,  // 0x0070 (112) pixels
+  0xF800, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800,  // 0x0080 (128) pixels
+  0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800,  // 0x0090 (144) pixels
+  0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF,  // 0x00A0 (160) pixels
+  0xFFFF, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800,  // 0x00B0 (176) pixels
+  0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0x0000, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800,  // 0x00C0 (192) pixels
+  0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0x0000, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800,  // 0x00D0 (208) pixels
+  0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xFFFF, 0xFFFF, 0xFFFF, 0x0000, 0xF800, 0xF800,  // 0x00E0 (224) pixels
+  0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xFFFF,  // 0x00F0 (240) pixels
+  0xFFFF, 0x0000, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800,  // 0x0100 (256) pixels
+  0xF800, 0xF800, 0xF800, 0xF800, 0xFFFF, 0x0000, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800,  // 0x0110 (272) pixels
+  0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0x0000, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800,  // 0x0120 (288) pixels
+  0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0x0000, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800,  // 0x0130 (304) pixels
+  0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0x0000, 0x2800, 0x0000, 0xF800, 0xF800, 0xF800,  // 0x0140 (320) pixels
+  0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0xF800, 0x0000, 0x2800,  // 0x0150 (336) pixels
+};</code></pre></li></ul><ul id="464ea1c3-b75e-4b81-b0e4-e5a9e282ff8b" class="bulleted-list"><li style="list-style-type:disc">Bildgröße definieren (finden Sie unter ‘Eigenschaften/Details’)<pre id="d4ddc877-dc0c-445b-a298-ed22e2db0659" class="code code-wrap"><code>// Größe des Bilds in px
+int imageWidth = 21;
+int imageHeight = 16;</code></pre></li></ul><ul id="535ab735-0639-4cc9-96c5-a5c47339a1e8" class="bulleted-list"><li style="list-style-type:disc">Funktionen für Anzeige Update hinzufügen, genau so wie das Beispiel der PxMatrix Bibliothek<pre id="46954255-5212-4a1c-920e-dab6562c7a66" class="code code-wrap"><code>// ----------------------------------------
+// Funktionen für Anzeige Update
+// ----------------------------------------
+#ifdef ESP32
+void IRAM_ATTR display_updater() {
+  portENTER_CRITICAL_ISR(&amp;timerMux);
+  display.display(display_draw_time);
+  portEXIT_CRITICAL_ISR(&amp;timerMux);
+}
+#endif
+#ifdef ESP8266
+void display_updater() {
+  display.display(display_draw_time);
+}
+#endif
+
+void display_update_enable(bool is_enable) {
+#ifdef ESP32
+  if (is_enable) {
+    timer = timerBegin(0, 80, true);
+    timerAttachInterrupt(timer, &amp;display_updater, true);
+    timerAlarmWrite(timer, 4000, true);
+    timerAlarmEnable(timer);
+  } else {
+    timerDetachInterrupt(timer);
+    timerAlarmDisable(timer);
+  }
+#endif
+#ifdef ESP8266
+  if (is_enable)
+    display_ticker.attach(0.004, display_updater);
+  else
+    display_ticker.detach();
+#endif
+}</code></pre></li></ul><ul id="1d105798-88f0-44c9-91ce-660ecc1cd7f6" class="bulleted-list"><li style="list-style-type:disc">Funktionen für die Anzeige definieren. Es gibt hier drei Optionen: scrollText, drawText und drawImage. <ul id="4035bd3a-c72c-4c67-b00a-be114476d379" class="bulleted-list"><li style="list-style-type:circle"><strong>scrollText: </strong>um einen laufenden Text zu zeigen. Die Funktion braucht zwei Argumente: der anzuzeigende Text und die Farbe des Texts. </li></ul><ul id="6814234d-6da0-4a6a-ada7-e09b528f623d" class="bulleted-list"><li style="list-style-type:circle"><strong>drawText: </strong>um einen stehenden Text zu zeigen. Auch diese Funktion braucht die selben zwei Argumente: der anzuzeigende Text und die Farbe des Texts. </li></ul><ul id="3c5c4d6c-5db7-49e2-8856-007cbf0d094a" class="bulleted-list"><li style="list-style-type:circle"><strong>drawImage: </strong>um ein Bild anzuzeigen. Diese Funktion braucht drei Argumente: die Hex Werte des Bildes als ein Array, die Breite und die Höhe des Bildes (“imageWidth” und “imageHeight”).</li></ul><pre id="23276b83-9bb8-437a-ae50-6f10cf075a23" class="code code-wrap"><code>// ----------------------------------------
+// LED-Matrixanzeige Funktionen
+// ----------------------------------------
+// zeige einmalig einen Lauftext in bestimmter Farbe
+void scrollText(String text, uint16_t colorRGB) {
+  unsigned long scroll_speed = 50;       // Geschwindigkeit des Scrollens
+  uint16_t text_length = text.length();  // Länge des Texts für die Berechnung
+
+  // Einstellung der Display
+  display.setTextWrap(false);      // Lauftext --&gt; kein TextWrap nötig
+  display.setTextSize(1);          // Standardgröße, 8px
+  display.setRotation(0);          // keine Rotation
+  display.setTextColor(colorRGB);  // Farbe des Texts wie angegeben
+
+  // Schritt für Schritt Text Anzeigen
+  for (int xpos = matrix_width; xpos &gt; -(matrix_width + text_length * 5); xpos--) {
+    display.clearDisplay();      // immer Anzeige zurücksetzen, bevor etwas Neues angezeigt wird
+    display.setCursor(xpos, 0);  // Setze den Text ganz oben (ypos=0), aber bei variablen xpos
+    display.println(text);
+    delay(scroll_speed);
+    yield();
+
+    delay(scroll_speed / 5);
+    yield();
+  }
+}
+
+// zeige den stehenden Text in bestimmter Farbe
+void drawText(String text, uint16_t colorRGB) {
+  display.clearDisplay();          // immer Anzeige zurücksetzen, bevor etwas Neues angezeigt wird
+  display.setTextWrap(true);       // stehender Text --&gt; TextWrap nötig für längere Texte
+  display.setTextSize(1);          // Standardgröße, 8px
+  display.setRotation(0);          // keine Rotation
+  display.setCursor(0, 0);         // Text fängt bei der Position oben links
+  display.setTextColor(colorRGB);  // Farbe des Texts wie angegeben
+  display.println(text);
+}
+
+// zeige das skalierte Bild
+void drawImage(uint16_t image[], int imageWidth, int imageHeight) {
+  display.clearDisplay();  // immer Anzeige zurücksetzen, bevor etwas Neues angezeigt wird
+  int counter = 0;
+  for (int y = 0; y &lt; imageHeight; y++) {
+    for (int x = 0; x &lt; imageWidth; x++) {
+      display.drawPixel(x, y, image[counter]);
+      counter++;
+    }
+  }
+}</code></pre></li></ul><ul id="31028292-f274-4b72-a3e5-a898b5f62a53" class="bulleted-list"><li style="list-style-type:disc">Setup des Mikrocontrollers, achten Sie bitte dabei, dass bei bestimmten Anzeigen ggf. mehr Einstellungen benötigt sind.<pre id="41ae0193-ff9f-4076-be22-a0d85e2a39cc" class="code code-wrap"><code>// ----------------------------------------
+// Setup
+// ----------------------------------------
+void setup() {
+
+  Serial.begin(115200);  // Serial baudrate 115200
+
+  // LED-Matrixanzeige einstellen
+  display.begin(16);  // display rows-scan pattern 1/16
+  display.setFastUpdate(true);
+
+  // ----------------------------------------
+  // weitere Einstellungen laut PxMatrix Example
+  // anzupassen wenn Grundeinstellungen nicht ausreichend sind
+  // Für weitere Infos siehe https://github.com/2dom/PxMatrix/tree/master
+  // ----------------------------------------
+
+  // multiplex pattern {BINARY (def), STRAIGHT, SHIFTREG_ABC, SHIFTREG_SPI_SE}
+  //display.setMuxPattern(BINARY);
+
+  // scan pattern {LINE (def), ZIGZAG,ZZAGG, ZAGGIZ, WZAGZIG, VZAG, ZAGZIG, WZAGZIG2}
+  //display.setScanPattern(LINE);
+
+  // Rotate display
+  //display.setRotate(true);
+
+  // Flip display
+  //display.setFlip(true);
+
+  // minimum color values that result in an active pixel
+  //display.setColorOffset(5, 5,5);
+
+  // color order {RRGGBB (def), RRBBGG, GGRRBB, GGBBRR, BBRRGG, BBGGRR}
+  //display.setColorOrder(RRGGBB);
+
+  // time in microseconds that we pause after selecting each mux channel
+  // (May help if some rows are missing / the mux chip is too slow)
+  //display.setMuxDelay(0,1,0,0,0);
+
+  // Set the number of panels that make up the display area width (default is 1)
+  //display.setPanelsWidth(2);
+
+  // Set the brightness of the panels (default is 255)
+  //display.setBrightness(50);
+
+  // Set driver chip type
+  //display.setDriverChip(FM6124);
+
+  display.clearDisplay();  // immer Anzeige zurücksetzen, bevor etwas Neues angezeigt wird
+  display_update_enable(true);
+}</code></pre></li></ul><ul id="86dfbc00-728a-449c-8cbb-07d04cb2bde8" class="bulleted-list"><li style="list-style-type:disc">Loop des Mikrocontrollers<pre id="8c17aa17-926b-4ca9-90f1-105e421a7028" class="code code-wrap"><code>void loop() {
+  scrollText(&quot;Herzlich Willkommen zur Summer School 2023!&quot;, myBLUE);  // Willkommenstext (laufend) in blau
+  delay(500);                                                         // kurze Pause
+  drawText(&quot;Bald kommt Youtube Logo!&quot;, myGREEN);                      // Text (stehend) in grün
+  delay(2000);                                                        // 2s Pause
+  drawImage(youtube_logo, imageWidth, imageHeight);                   // Youtube Logo als Bild
+  delay(5000);                                                        // 5s Pause
+}</code></pre></li></ul></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><mark class="highlight-default">Konzept</mark></summary><div class="indented"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="8910621b-04cd-40ec-b7bc-d4c1d82f40db"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Für den Prototyp sind diese Anwendungsfälle wichtig:<ul id="395c56ba-9445-475c-93c4-894ad7176e84" class="bulleted-list"><li style="list-style-type:disc">Der Benutzer muss sich einloggen, um die Webseite verwenden zu dürfen.</li></ul><ul id="27e8832a-396a-498f-99f6-524f313956f6" class="bulleted-list"><li style="list-style-type:disc">Der Benutzer kann einen beliebigen Text, der als ein stehender Text angezeigt werden soll, mit bestimmter Farbe hochladen.</li></ul><ul id="34e0be54-104c-4309-a6a6-7747573574a7" class="bulleted-list"><li style="list-style-type:disc">Der Benutzer kann einen beliebigen Text, der als ein laufender Text angezeigt werden soll, mit bestimmter Farbe hochladen.</li></ul><ul id="b5450261-3177-42c1-a505-d6bc15d364c9" class="bulleted-list"><li style="list-style-type:disc">Der Benutzer kann ein beliebiges Bild hochladen, was automatisch skaliert wird, wenn es für die Anzeige zu groß ist.</li></ul><ul id="4d4d152a-136b-4c44-ad20-0e37e7402003" class="bulleted-list"><li style="list-style-type:disc">Der Benutzer kann mehrere Bilder (max. 3) hochladen, die dann auch automatisch skaliert werden. Diese Bilder werden dann mit einer eingestellten Pause auf der Anzeige angezeigt. Festgelegt sollte die Pause zwischen 0,2 - 2 s.</li></ul><ul id="2a9210d4-4bc2-434b-994b-bab2bd38a103" class="bulleted-list"><li style="list-style-type:disc">Der Benutzer kann eine Gif Datei hochladen. Hier wird die Pause nicht manuell eingestellt sondern von den Gif Frame Delays übernommen.</li></ul><ul id="e1a19e14-013d-4d66-af97-db1a84beed63" class="bulleted-list"><li style="list-style-type:disc">Die hochgeladenen Objekte sind zu sehen, bis der Benutzer ein neues Objekt hochgeladen hat.</li></ul></div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="21f794e8-41f6-4769-ab2a-44ee84d1872b"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Um die Pipeline zu verwirklichen, müssen vorher Endpunkte des Servers definiert werden, die unsere Systemen helfen, miteinander zu kommunizieren. Weitere Informationen zu Endpunkte finden Sie auf <a href="https://en.wikipedia.org/wiki/Web_API">Wikipedia</a>. Für unsere genannte Zwecke, benötigen wir z. B. diese Endpunkte<ul id="8922b154-266d-4e6a-9a5c-428c0d9f719a" class="bulleted-list"><li style="list-style-type:disc"><strong>root (/):</strong> als Startpunkt. Wenn man die URL des Servers über einen Browser aufruft, wird ein HTTP GET Befehl gesendet. </li></ul><ul id="3925b4e7-b66b-4dbb-86a8-15e235c3cc62" class="bulleted-list"><li style="list-style-type:disc">/<strong>size:</strong> Wenn die HTML Seite geladen wird, wird ein weiterer HTTP GET Befehl gesendet.</li></ul><ul id="7ab2df9e-1a1e-42dc-81fe-0416029b98e9" class="bulleted-list"><li style="list-style-type:disc">/<strong>movingimages: </strong>für mehrere Bilder (keine Gif), die nacheinander mit der einstellbaren Pause angezeigt werden sollen. Hierfür wird ein JSON Objekt mit den Daten als HTTP POST Befehl gesendet.</li></ul><ul id="f9a92a36-1d67-4147-851a-f180fac276d6" class="bulleted-list"><li style="list-style-type:disc">/<strong>gif:</strong> für eine Gif Datei. Hierfür wird ein JSON Objekt mit den Daten als HTTP POST Befehl gesendet.</li></ul><ul id="5c3ab5da-341a-4c7d-8247-4e84357008a7" class="bulleted-list"><li style="list-style-type:disc">/<strong>image:</strong> für ein Bild. Hierfür wird ein JSON Objekt mit den Daten als HTTP POST Befehl gesendet.</li></ul><ul id="cccb7812-637c-41b4-b734-f3adb129b187" class="bulleted-list"><li style="list-style-type:disc">/<strong>text:</strong> für den Text mit der dazugehörigen Einstellung: Modus (static / scroll) &amp; Farbe in RGB. Diese Daten werden als JSON Objekt als HTTP POST Befehl gesendet.</li></ul><figure id="47994910-eba4-47e1-830c-03025d5d76ee" class="image"><a href="index/endpoints.png"><img style="width:624px" src="index/endpoints.png"/></a></figure><p id="f4a38649-e575-4206-a27a-a7e9d283e67c" class=""><strong>Rückmeldungen vom Server (HTTP Response):</strong></p><ul id="bc6d9a02-db07-48c1-97ba-3cf6460288ba" class="bulleted-list"><li style="list-style-type:disc"><strong>root (/): </strong>Als Rückmeldung bei erfolgreicher Authentifizierung bekommt der Browser die HTML Seite für die Interaktion als Webclient. Code 200, HTML Datei.</li></ul><ul id="ac3cad5d-1b9d-4fe8-86a4-060e644cfba3" class="bulleted-list"><li style="list-style-type:disc"><strong>/size:</strong>  Als Rückmeldung kriegt der Client die Größe der Anzeige, mit der der ESP Server verbunden ist. Mit diesen Werten kann der Client das hochgeladene Bild bei Bedarf skalieren. Code 200, [width,height]</li></ul><ul id="c1be40b1-dd90-4668-8f0f-735931963ab8" class="bulleted-list"><li style="list-style-type:disc">Bei weiteren Endpunkten wird nach dem Prinzip zurückgemeldet, ob ein Fehler bei der Bearbeitung der Befehle aufgetreten ist. Falls nein, dann Code 200 mit Erfolgsmeldung Text, sonst Code 40x. Genauere Information zu den HTTP Status Codes gibt es auf <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">Wikipedia</a>.</li></ul></div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="3fc21314-8ae9-406f-881b-2aa213d1014c"><div style="font-size:1.5em"><span class="icon">ℹ️</span></div><div style="width:100%">Anforderungen Client<ul id="346431b5-9a63-4293-b23e-d672e7762832" class="bulleted-list"><li style="list-style-type:disc">Plausibilisierung der Benutzereingaben</li></ul><ul id="dd7d2d6a-4259-45e0-bfe5-62768981b437" class="bulleted-list"><li style="list-style-type:disc">Vorbereiten der Benutzereingaben als JSON Objekt<ul id="08f04aba-f95c-4325-9657-b9030ab936c5" class="bulleted-list"><li style="list-style-type:circle">Text:  Benutzereingaben direkt in JSON Objekt packen</li></ul><ul id="1cab5805-8812-4af0-9b1f-a319f34d28dc" class="bulleted-list"><li style="list-style-type:circle">Bild (oder Bilder): ggf. verkleinern, in C Code Array umwandeln, erst dann in JSON Object, ggf. auch mit Frame Delays</li></ul><ul id="c4cafd15-c30a-402e-9c5c-a69365a8e30a" class="bulleted-list"><li style="list-style-type:circle">Erstmal auf max. 3 Bilder begrenzen (wg. Speicherbegrenzung)</li></ul></li></ul><p id="f5f41449-33cd-4242-be71-3f40666f7667" class="">Anforderungen Server</p><ul id="bbd56fae-fc01-4352-9588-5c4b05f05ab8" class="bulleted-list"><li style="list-style-type:disc">Authentifizierung des Clients (username: admin, password: esp32)</li></ul><ul id="2d386311-7943-4250-87b0-4e40010842ea" class="bulleted-list"><li style="list-style-type:disc">JSON Objekte von authentifizierten Clients entgegennehmen und aufbereiten</li></ul><ul id="8980f2ac-8bf7-49da-ba77-b404fd5b3d0f" class="bulleted-list"><li style="list-style-type:disc">Daten in der Matrixanzeige anzeigen</li></ul></div></figure></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Webclient einrichten</summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Option ohne Webseite</summary><div class="indented"><p id="79fa4611-a8e5-42ea-a650-2acf16e912d3" class="">Machen Sie erstmal mit der Einrichtung des Webservers weiter. Danach können Sie diese Schritte folgen:</p><ul id="6e49010e-9f02-4e51-877c-4e678b0cf934" class="toggle"><li><details open=""><summary>Postman Agent installieren</summary><figure id="35e2c3d0-9e9e-464b-b3c3-9c25c3e7681e"><a href="https://www.postman.com/downloads/postman-agent/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Postman Agent: For Mac, Windows, &amp; Linux</div><div class="bookmark-description">The Postman agent overcomes the Cross-Origin Resource Sharing (CORS) limitations of browsers, and facilitates API request sending from your browser version of Postman.</div></div><div class="bookmark-href"><img src="https://www.postman.com/_mk-www-v8.4.0/icons/icon-512x512.png?v=385b24b9d8db6d360e97f2fe356659b5" class="icon bookmark-icon"/>https://www.postman.com/downloads/postman-agent/</div></div><img src="https://voyager.postman.com/social-preview/postman-api-platform-social-preview-2.jpeg" class="bookmark-image"/></a></figure></details></li></ul><ul id="43e86530-61f5-44a6-9f84-fdb728319ea6" class="toggle"><li><details open=""><summary>Postman Konto erstellen</summary><figure id="04089842-f3a1-438a-a77c-bc626d232393"><a href="https://identity.getpostman.com/login" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title"></div></div><div class="bookmark-href">https://identity.getpostman.com/login</div></div></a></figure></details></li></ul><ul id="43fed2d5-c3ef-4425-ab6a-0b44df4b633b" class="toggle"><li><details open=""><summary>Bild aufbereiten (oder das C Code Array von <a href="https://github.com/rasafitri/matrix-example">Matrix Example</a> verwenden)</summary><ul id="06548022-af3d-4c73-b646-04d1ba7c7096" class="bulleted-list"><li style="list-style-type:disc">ggf. Bild verkleinern mit Ihrem bevorzugten Tool, max: die Größe der Matrixanzeige</li></ul><ul id="8c6a8519-1900-41d7-af7c-dfcaac6eadf6" class="bulleted-list"><li style="list-style-type:disc">Bild in ein C Code Array <a href="http://www.rinkydinkelectronics.com/t_imageconverter565.php">hier</a> umwandeln</li></ul><ul id="4c82013f-ac30-4f6d-a610-393c134ee783" class="bulleted-list"><li style="list-style-type:disc">Daten kopieren</li></ul></details></li></ul><ul id="8aebde04-cbe6-4cc3-a42a-b83f8f4d8cef" class="toggle"><li><details open=""><summary>Daten über Postman senden</summary><ul id="17e0ef7f-ca25-4dd8-acae-824694ecb2b3" class="bulleted-list"><li style="list-style-type:disc">Hier als Beispiel das C Code Array von Matrix Example (Youtube Logo) schon als JSON Objekt für den Endpoint Image</li></ul><pre id="006f13d2-03da-46d7-896e-29eb8d1d4448" class="code"><code>{
+    &quot;size&quot;:[21,16],
+    &quot;hexValues&quot;:[
+        &quot;0x2800&quot;, &quot;0x0000&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;,
+        &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0x0000&quot;, &quot;0x2800&quot;, &quot;0x0000&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;,
+        &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0x0000&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;,
+        &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xFFFF&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;,
+        &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xFFFF&quot;, &quot;0xFFFF&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;,
+        &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xFFFF&quot;, &quot;0xFFFF&quot;, &quot;0xFFFF&quot;, &quot;0xF800&quot;,
+        &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;,
+        &quot;0xF800&quot;, &quot;0xFFFF&quot;, &quot;0xFFFF&quot;, &quot;0xFFFF&quot;, &quot;0xFFFF&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;,
+        &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xFFFF&quot;, &quot;0xFFFF&quot;, &quot;0xFFFF&quot;, &quot;0xFFFF&quot;, &quot;0xFFFF&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;,
+        &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xFFFF&quot;, &quot;0xFFFF&quot;, &quot;0xFFFF&quot;, &quot;0xFFFF&quot;, &quot;0xFFFF&quot;,
+        &quot;0xFFFF&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;,
+        &quot;0xFFFF&quot;, &quot;0xFFFF&quot;, &quot;0xFFFF&quot;, &quot;0xFFFF&quot;, &quot;0xFFFF&quot;, &quot;0x0000&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;,
+        &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xFFFF&quot;, &quot;0xFFFF&quot;, &quot;0xFFFF&quot;, &quot;0xFFFF&quot;, &quot;0x0000&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;,
+        &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xFFFF&quot;, &quot;0xFFFF&quot;, &quot;0xFFFF&quot;, &quot;0x0000&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;,
+        &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xFFFF&quot;,
+        &quot;0xFFFF&quot;, &quot;0x0000&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;,
+        &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xFFFF&quot;, &quot;0x0000&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;,
+        &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0x0000&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;,
+        &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0x0000&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;,
+        &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0x0000&quot;, &quot;0x2800&quot;, &quot;0x0000&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;,
+        &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0xF800&quot;, &quot;0x0000&quot;, &quot;0x2800&quot;
+    ]
+}</code></pre><figure id="1c1158ef-c93e-45cd-aafb-ddf722e7ce48" class="image"><a href="index/1.png"><img style="width:1920px" src="index/1.png"/></a></figure><figure id="e29f1fdb-fa0f-46f3-b276-96637e906cde" class="image"><a href="index/2.png"><img style="width:1918px" src="index/2.png"/></a></figure><figure id="99457240-80d0-43b8-b47b-3d45a12a157d" class="image"><a href="index/no-auth.png"><img style="width:1917px" src="index/no-auth.png"/></a></figure><figure id="4ae2217c-9c61-436f-8b57-72f0af2fa2a0" class="image"><a href="index/sent.png"><img style="width:1916px" src="index/sent.png"/></a></figure></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Option mit Webseite</summary><div class="indented"><ul id="59eea3bd-babf-4d9c-bfb1-353a24762e71" class="toggle"><li><details open=""><summary>Visual Studio Code installieren und einrichten</summary><figure id="ecdcaa06-82b7-4c92-b910-ebaa5bf24382"><a href="https://code.visualstudio.com/download" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title"></div></div><div class="bookmark-href">https://code.visualstudio.com/download</div></div></a></figure><p id="44c4b922-9611-4065-ba19-fafb13cd51c0" class="">Dazu benötigen wir den <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server">Live Server</a>, um das Programmieren und das Testen zu vereinfachen.</p></details></li></ul><ul id="55f37a05-0d56-424d-bbda-fa41f887c2c3" class="toggle"><li><details open=""><summary>Repository clonen / als .zip herunterladen</summary><figure id="0276a5b9-dafe-4204-a713-488fa5bf8f80"><a href="https://github.com/rasafitri/webclient-upload" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title"></div></div><div class="bookmark-href">https://github.com/rasafitri/webclient-upload</div></div></a></figure></details></li></ul><ul id="4903dad0-2aa1-486c-9383-5ab93bb1367a" class="toggle"><li><details open=""><summary>Code Erklärung - Wichtige Funktionen</summary><pre id="bf102021-8bc3-44c7-a6a4-a35989009a45" class="code code-wrap"><code>function onPageLoad(): // sendet GET Size beim Laden, das muss auskommentiert werden beim Testen, funktioniert nur in Verbindung mit dem Server.
+
+function prepareSendImg(): // wird ausgeführt, wenn der Benutzer den Button &quot;Bild hochladen&quot; klickt. Bereitet das Bild auf und sendet es mit fetch.
+
+function prepareSendTxt(): // wird ausgeführt, wenn der Benutzer den Button &quot;Text hochladen&quot; klickt. Bereitet den Text auf und sendet es mit fetch.
+
+function loadImage(files): // wird ausgeführt, wenn der Benutzer eine Datei hochgeladen hat. 
+													 // Die Eingabe wird dann plausibilisiert und die Anzeige wird angepasst.
+
+async function processImages(): // Bildaufbereitung wenn es mehrere Bilder gibt
+
+function processGif(): // Bildaufbereitung wenn es um eine Gif Datei handelt
+
+function processImg(file): // Diese Funktion triggert &quot;convertImgToCCodeSize&quot; und gibt eine Fehlermeldung, wenn es fehlgeschlagen ist.
+
+function convertImgToCCodeSize(image): // Diese Funtion verkleinert das Bild bei Bedarf und wandelt es in C Code Array um.
+
+function hexToRGB(hexValue): //Diese Funktion wandelt Farben von HEX Werten in RGB Werte.</code></pre><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="09b82a10-d726-481f-aadf-7f2a40adc0d1"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%">Da die Webseite nicht der Schwerpunkt dieses Themas ist, gibt es hier keine Anleitung. Sie können das Code übernehmen oder Ihr Eigenes kreieren. Melden Sie sich wenn Sie Hilfe brauchen.</div></figure></details></li></ul></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Webserver einrichten und Daten anzeigen</summary><div class="indented"><ul id="85f0101b-8cfa-45d5-9765-e7a8452cf6c8" class="toggle"><li><details open=""><summary><code>ArduinoJson</code> Library in Arduino IDE einbinden</summary><p id="06958a98-b17c-4d75-9315-097ae95ad5f0" class="">Dafür suchen Sie nach <code>ArduinoJson</code> in Library Manager und installieren die neueste Version.</p></details></li></ul><ul id="a5877abd-223a-4d8d-9449-2bb171aed834" class="toggle"><li><details open=""><summary>Repository clonen / als .zip herunterladen</summary><figure id="6256736e-762b-4bba-ad43-2ee8799327e2"><a href="https://github.com/rasafitri/esp-webserver" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title"></div></div><div class="bookmark-href">https://github.com/rasafitri/esp-webserver</div></div></a></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="5b8c246c-71aa-4467-a0fd-4bffc0af7e13"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%">Vergessen Sie bitte nicht, einige Variablen anzupassen, besonders das <code>SSID</code> und das <code>Passwort</code> vom WLAN.</div></figure></details></li></ul><ul id="c36f0b1d-496b-46bf-9ced-7514ba2e1bbf" class="toggle"><li><details open=""><summary>Webseite in den Server</summary><p id="c3cd3035-bc09-4fb6-ad24-4566be3359c9" class="">Falls Sie die Webseite erstellt haben, müssen Sie diese in den Server verlagern. Dafür erstellen Sie eine Datei <code>webclient.h</code> in Ihrem Arbeitsordner, die diese Format haben soll</p><pre id="5683acb6-1738-47ed-872d-54c5abe86eee" class="code"><code>const char htmlPage[] = R&quot;=====(
+&lt;!-- Hier kommt der Inhalt Ihrer .html Datei rein --&gt;
+&lt;!-- Ersetzen Sie den Link zur .css file durch &lt;style&gt; tag --&gt;
+&lt;!-- Kopieren und einfügen Sie den Inhalt Ihrer .js file in &lt;script&gt; tag --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;de&quot;&gt;
+
+&lt;head&gt;
+  &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;
+  &lt;title&gt;Summer School 2023&lt;/title&gt;
+  &lt;style&gt;
+    &lt;!-- Hier kommt der Inhalt Ihrer .css Datei rein --&gt;
+  &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body onload=&quot;onPageLoad()&quot;&gt;
+  &lt;h1&gt;Summer School 2023 - Prototyping für ein gesundes Berlin&lt;/h1&gt;
+  
+  &lt;script src=&quot;https://cdn.jsdelivr.net/npm/omggif@1.0.10/omggif.min.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    // hier kommt der Inhalt der .js file rein
+  &lt;/script&gt;
+&lt;/body&gt;
+)=====&quot;;</code></pre><p id="a695a095-b62e-4be7-bcf3-d73afed6a9cd" class="">Damit können Sie die <code>webclient.h</code> Datei aus dem Repository ersetzen.</p></details></li></ul><ul id="8be6cefc-5080-4e80-a261-486057bc8806" class="toggle"><li><details open=""><summary>Code Erklärung</summary><ul id="cfd2f189-6777-44cb-97e5-02feb8df0ead" class="bulleted-list"><li style="list-style-type:disc">Die benötigten Bibliotheken einfügen, damit wir alle Funktionen nutzen können<pre id="331d2ddc-0dad-4b28-909f-e794f3850cdd" class="code code-wrap"><code>// ----------------------------
+// Standard Libs
+// ----------------------------
+#ifdef ESP32
+#include &lt;WiFi.h&gt;
+// WLAN Verbindung für den Server
+#include &lt;WebServer.h&gt;
+// ESP32 WebServer
+#endif
+
+#ifdef ESP8266
+#include &lt;ESP8266WiFi.h&gt;
+// WLAN Verbindung für den Server
+#include &lt;ESP8266WebServer.h&gt;
+// ESP8266 WebServer
+#endif
+
+// ----------------------------
+// Additional Libs
+// ----------------------------
+#include &lt;ArduinoJson.h&gt;
+// JSON Format
+#include &lt;PxMatrix.h&gt;
+// Steuerung der Anzeige
+#include &quot;webclient.h&quot;
+// selbsterstellte WebClient Seite https://github.com/rasafitri/webclient-upload</code></pre></li></ul><ul id="4c0809bc-0386-4d6f-8416-4dda44f340aa" class="bulleted-list"><li style="list-style-type:disc">Konstante für die Anzeige definieren (wie <code>Matrix-Example</code>), auch hierzu übernehmen wir die LED-Matrixanzeige Funktionen aus <code>Matrix-Example</code><pre id="3dd9156d-58d6-4a47-8338-d354024939ef" class="code code-wrap"><code>// ----------------------------------------
+// Einstellungen der LED-Matrixanzeigetafel
+// ----------------------------------------
+#define matrix_width 64   // Breite der Anzeige, anzupassen
+#define matrix_height 32  // Höhe der Anzeige, anzupassen
+
+// Pin Belegungen der Anzeige, anzupassen
+#ifdef ESP32
+#define P_A 19
+#define P_B 23
+#define P_C 18
+#define P_D 5
+#define P_E -1  // anzupassen bei Verbindung
+#define P_LAT 22
+#define P_OE 16
+#endif
+
+#ifdef ESP8266
+#define P_A 5
+#define P_B 4
+#define P_C 15
+#define P_D 12
+#define P_E -1  // anzupassen bei Verbindung
+#define P_LAT 16
+#define P_OE 2
+#endif
+
+PxMATRIX display(matrix_width, matrix_height, P_LAT, P_OE, P_A, P_B, P_C, P_D, P_E);
+
+// die Helligkeit der Anzeige, 30-70, je nach Bedarf anpassen
+uint8_t display_draw_time = 60;
+unsigned long scroll_speed = 50;  // Geschwindigkeit des Scrollens
+
+// ----------------------------------------
+// Timer für Callbacks
+// ----------------------------------------
+#ifdef ESP32
+hw_timer_t* timer = NULL;
+portMUX_TYPE timerMux = portMUX_INITIALIZER_UNLOCKED;
+#endif
+#ifdef ESP8266
+#include &lt;Ticker.h&gt;
+Ticker display_ticker;
+#endif
+
+// ----------------------------------------
+// Funktionen für Anzeige Update
+// ----------------------------------------
+#ifdef ESP32
+void IRAM_ATTR display_updater() {
+  portENTER_CRITICAL_ISR(&amp;timerMux);
+  display.display(display_draw_time);
+  portEXIT_CRITICAL_ISR(&amp;timerMux);
+}
+#endif
+#ifdef ESP8266
+void display_updater() {
+  display.display(display_draw_time);
+}
+#endif
+
+void display_update_enable(bool is_enable) {
+#ifdef ESP32
+  if (is_enable) {
+    timer = timerBegin(0, 80, true);
+    timerAttachInterrupt(timer, &amp;display_updater, true);
+    timerAlarmWrite(timer, 4000, true);
+    timerAlarmEnable(timer);
+  } else {
+    timerDetachInterrupt(timer);
+    timerAlarmDisable(timer);
+  }
+#endif
+#ifdef ESP8266
+  if (is_enable)
+    display_ticker.attach(0.004, display_updater);
+  else
+    display_ticker.detach();
+#endif
+}
+
+// ----------------------------
+// LED-Matrixanzeige Funktionen
+// ----------------------------
+// zeige einmalig einen Lauftext in bestimmter Farbe
+void scrollText(String text, uint16_t colorRGB) {
+  uint16_t text_length = text.length();  // Länge des Texts für die Berechnung
+
+  // Einstellung der Display
+  display.setTextWrap(false);      // Lauftext --&gt; kein TextWrap nötig
+  display.setTextSize(1);          // Standardgröße, 8px
+  display.setRotation(0);          // keine Rotation
+  display.setTextColor(colorRGB);  // Farbe des Texts wie angegeben
+
+  // Schritt für Schritt Text Anzeigen
+  for (int xpos = matrix_width; xpos &gt; -(matrix_width + text_length * 5); xpos--) {
+    display.clearDisplay();      // immer Anzeige zurücksetzen, bevor etwas Neues angezeigt wird
+    display.setCursor(xpos, 0);  // Setze den Text ganz oben (ypos=0), aber bei variablen xpos
+    display.println(text);
+    delay(scroll_speed);
+    yield();
+
+    delay(scroll_speed / 5);
+    yield();
+  }
+}
+
+// zeige den stehenden Text in bestimmter Farbe
+void drawText(String text, uint16_t colorRGB) {
+  display.clearDisplay();          // immer Anzeige zurücksetzen, bevor etwas Neues angezeigt wird
+  display.setTextWrap(true);       // stehender Text --&gt; TextWrap nötig für längere Texte
+  display.setTextSize(1);          // Standardgröße, 8px
+  display.setRotation(0);          // keine Rotation
+  display.setCursor(0, 0);         // Text fängt bei der Position oben links
+  display.setTextColor(colorRGB);  // Farbe des Texts wie angegeben
+  display.println(text);
+}
+
+// zeige das skalierte Bild
+void drawImage(uint16_t image[], int imageWidth, int imageHeight) {
+  display.clearDisplay();  // immer Anzeige zurücksetzen, bevor etwas Neues angezeigt wird
+  int counter = 0;
+  for (int y = 0; y &lt; imageHeight; y++) {
+    for (int x = 0; x &lt; imageWidth; x++) {
+      display.drawPixel(x, y, image[counter]);
+      counter++;
+    }
+  }
+}</code></pre></li></ul><ul id="26e90cca-aec2-44c7-a710-13802e95c3df" class="bulleted-list"><li style="list-style-type:disc">WLAN und Server konfigurieren. Bitte vergessen nicht, dass das <code>SSID</code> und das <code>Passwort</code> vom WLAN hier noch angepasst werden müssen.<pre id="b7e2a245-0885-473d-a931-a679887489e7" class="code code-wrap"><code>/ ----------------------------
+// WLAN-Einstellung
+// ----------------------------
+const char* ssid = &quot;your-ssid&quot;;        // WLAN ssid, anzupassen
+const char* password = &quot;your-password&quot;;  // WLAN Password, anzupassen
+
+// ----------------------------
+// WebServer-Einstellung
+// ----------------------------
+const char* www_username = &quot;admin&quot;;      // Benutzername für Login, anzupassen
+const char* www_password = &quot;esp32&quot;;      // Passwort für Login, anzupassen
+const char* hostname = &quot;myesp32server&quot;;  // Die erreichbare Adresse des Servers
+WebServer server(80);                    // Server Port 80</code></pre></li></ul><ul id="32ac9e7d-0de8-4822-988f-90b5e0b98846" class="bulleted-list"><li style="list-style-type:disc">Weitere Hilfsvariablen definieren<pre id="92599fd3-9631-486b-914d-1fff30d2dc5d" class="code code-wrap"><code>// ----------------------------
+// Hilfsvariablen
+// ----------------------------
+char buffer[50];
+const char* http = &quot;http://&quot;;
+
+bool startTextLoop = false;  // scroll text als loop?
+String scroll_text = &quot;&quot;;     // Text für scroll_text in loop()
+uint16_t text_color = 0;     // Farbe für scroll_text in loop()
+
+bool isGif = false;           // ist gif Endpunkt?
+bool startImageLoop = false;  // zeige Bilder in loop?
+JsonArray frames;             // Array der Bilder
+JsonArray delays;             // Array der Frame Delays
+uint16_t frameDelay;          // Frame Delay von movingimages Endpunkt</code></pre></li></ul><ul id="3af26096-b6c7-40a6-a885-351c2e7595a4" class="bulleted-list"><li style="list-style-type:disc">ESP Server und Display Setup<pre id="34b14556-601c-41ae-a527-a24468d25856" class="code"><code>// ----------------------------
+// ESP Setup
+// ----------------------------
+void setup() {
+  Serial.begin(115200);  // Serial baudrate 115200
+
+  // WLAN Verbindung einstellen
+  WiFi.setHostname(hostname);  // Setze den Namen des Servers
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(ssid, password);  // WLAN Verbindung aufbauen
+  Serial.print(&quot;Verbinden mit &quot;);
+  Serial.println(ssid);
+
+  while (WiFi.waitForConnectResult() != WL_CONNECTED) {
+    // WLAN nicht verbunden
+    Serial.println(&quot;Verbindung fehlgeschlagen! Reboot...&quot;);
+    delay(1000);
+    ESP.restart();
+  }
+  Serial.println(&quot;WLAN Verbunden&quot;);
+
+  // LED-Matrixanzeige einstellen
+  display.begin(16);  // display rows-scan pattern 1/16
+  display.setFastUpdate(true);
+  display.clearDisplay();  // immer Anzeige zurücksetzen, bevor etwas Neues angezeigt wird
+  display_update_enable(true);
+	
+	// handle alle Endpunkte
+  // server handle root endpoint
+  server.on(&quot;/&quot;, []() {
+    // mit Authentifizierung für Login mit Benutzername und Password
+    if (!server.authenticate(www_username, www_password)) {
+      return server.requestAuthentication();
+    }
+    // authentifizierte Nutzer dürfen die HTML Seite sehen
+    handleRoot();
+  });
+
+  server.on(&quot;/text&quot;, []() {
+    // mit Authentifizierung für Login mit Benutzername und Password
+    if (!server.authenticate(www_username, www_password)) {
+      return server.requestAuthentication();
+    }
+    // server handle text endpoint
+    handleText();
+  });
+
+  server.on(&quot;/image&quot;, []() {
+    // mit Authentifizierung für Login mit Benutzername und Password
+    if (!server.authenticate(www_username, www_password)) {
+      return server.requestAuthentication();
+    }
+    // server handle image endpoint
+    handleImage();
+  });
+
+  server.on(&quot;/size&quot;, []() {
+    // mit Authentifizierung für Login mit Benutzername und Password
+    if (!server.authenticate(www_username, www_password)) {
+      return server.requestAuthentication();
+    }
+    // server handle size endpoint
+    handleSize();
+  });
+
+  server.on(&quot;/gif&quot;, []() {
+    // mit Authentifizierung für Login mit Benutzername und Password
+    if (!server.authenticate(www_username, www_password)) {
+      return server.requestAuthentication();
+    }
+    // server handle gif endpoint
+    handleGif();
+  });
+
+  server.on(&quot;/movingimages&quot;, []() {
+    // mit Authentifizierung für Login mit Benutzername und Password
+    if (!server.authenticate(www_username, www_password)) {
+      return server.requestAuthentication();
+    }
+    // server handle movingimages endpoint
+    handleMovingImg();
+  });
+
+  server.onNotFound(handleNotFound);  // server handle not found endpoint
+  server.begin();                     // Serverstart
+  Serial.println(&quot;Server started!&quot;);
+
+  // zeige die Adresse des Servers auf der Anzeige in blau
+  strcpy(buffer, http);
+  strcat(buffer, WiFi.getHostname());
+  display.setTextWrap(true);
+  display.setCursor(0, 0);
+  display.setTextColor(display.color565(0, 0, 255));
+  display.println(buffer);
+}</code></pre></li></ul><ul id="b2b34f2f-29ce-4abb-a7ee-0020df0be3ac" class="bulleted-list"><li style="list-style-type:disc">Handle alle Endpunkte<pre id="6053eb91-3e08-415f-bdde-63ea7248789d" class="code"><code>// ----------------------------
+// Event-Handler WebServer
+// ----------------------------
+// root endpoint, zeigt WebClient
+void handleRoot() {
+  // sende die html Seite zum Client beim Aufruf des Servers
+  server.send(200, &quot;text/html&quot;, htmlPage);
+  Serial.println(&quot;HTML Seite geöffnet&quot;);
+}
+
+// /text endpoint für POST Text, Text Behandlung &amp; Anzeige
+void handleText() {
+  if (server.method() != HTTP_POST) {
+    // keine gültige Methode, sende HTTP Response 405
+    server.send(405, &quot;text/plain&quot;, &quot;Method Not Allowed&quot;);
+    Serial.println(&quot;Method not allowed&quot;);
+  } else {
+    // ist eine POST Request, Text-Einstellung in JSON Format entgegennehmen
+    Serial.println(&quot;Text-Einstellung entgegengenommen&quot;);
+
+#ifdef ESP32
+    DynamicJsonDocument jsonDoc(ESP.getMaxAllocHeap());
+#endif
+#ifdef ESP8266
+    DynamicJsonDocument jsonDoc(ESP.getMaxFreeBlockSize() - 512);
+#endif
+    // Deserialization des Requests
+    DeserializationError error = deserializeJson(jsonDoc, server.arg(&quot;plain&quot;));
+
+    switch (error.code()) {
+      case DeserializationError::Ok:
+        Serial.println(&quot;Deserialization erfolgreich&quot;);
+        break;
+      case DeserializationError::EmptyInput:
+        server.send(400, &quot;text/plain&quot;, &quot;Empty Input&quot;);
+        Serial.println(&quot;Empty Input&quot;);
+        return;
+      case DeserializationError::IncompleteInput:
+        server.send(400, &quot;text/plain&quot;, &quot;Incomplete Input&quot;);
+        Serial.println(&quot;Incomplete Input&quot;);
+        return;
+      case DeserializationError::InvalidInput:
+        server.send(400, &quot;text/plain&quot;, &quot;JSON Invalid&quot;);
+        Serial.println(&quot;JSON Invalid&quot;);
+        return;
+      case DeserializationError::NoMemory:
+        server.send(413, &quot;text/plain&quot;, &quot;No Memory&quot;);
+        Serial.println(&quot;kein Memory&quot;);
+        return;
+      case DeserializationError::TooDeep:
+        server.send(413, &quot;text/plain&quot;, &quot;Too Deep&quot;);
+        Serial.println(&quot;Too Deep&quot;);
+        return;
+      default:
+        server.send(400, &quot;text/plain&quot;, &quot;Deserialization failed&quot;);
+        Serial.println(&quot;Deserialization Fehler&quot;);
+        return;
+    }
+
+    // Request Format
+    // value: &quot;eingegebener Text&quot;,
+    // color: [R,G,B],
+    // mode: &quot;scroll&quot; ODER mode: &quot;static&quot;
+
+    JsonObject root = jsonDoc.as&lt;JsonObject&gt;();
+    String text = root[&quot;value&quot;].as&lt;String&gt;();
+    JsonArray color = root[&quot;color&quot;].as&lt;JsonArray&gt;();
+    uint8_t r = static_cast&lt;uint8_t&gt;(color[0]);
+    uint8_t g = static_cast&lt;uint8_t&gt;(color[1]);
+    uint8_t b = static_cast&lt;uint8_t&gt;(color[2]);
+    String mode = root[&quot;mode&quot;].as&lt;String&gt;();
+
+    if (mode == &quot;scroll&quot;) {
+      // Lauftext ausgewählt --&gt; sende Rückmeldung, dass der Lauftext verarbeitet wurde
+      server.send(200, &quot;text/plain&quot;, &quot;Lauftext \&quot;&quot; + text + &quot;\&quot; erfolgreich verarbeitet!&quot;);
+      Serial.println(&quot;Lauftext verarbeitet&quot;);
+
+      startImageLoop = false;
+      startTextLoop = true;
+      scroll_text = text;
+      text_color = display.color565(r, g, b);
+    } else {
+      // sende Rückmeldung, dass der Text verarbeitet wurde
+      server.send(200, &quot;text/plain&quot;, &quot;Text \&quot;&quot; + text + &quot;\&quot; erfolgreich verarbeitet!&quot;);
+      Serial.println(&quot;Text verarbeitet&quot;);
+      // stehender Text in der ausgewählten Farbe
+      startImageLoop = false;
+      startTextLoop = false;
+      drawText(text, display.color565(r, g, b));
+    }
+  }
+}
+
+// /image endpoint, Bild Behandlung &amp; Anzeige
+void handleImage() {
+  if (server.method() != HTTP_POST) {
+    // keine gültige Methode, sende HTTP Response 405
+    server.send(405, &quot;text/plain&quot;, &quot;Method Not Allowed&quot;);
+  } else {
+    // ist eine POST Request, Bild in JSON Format entgegennehmen
+    Serial.println(&quot;Bild entgegengenommen&quot;);
+
+#ifdef ESP32
+    DynamicJsonDocument jsonDoc(ESP.getMaxAllocHeap());
+#endif
+#ifdef ESP8266
+    DynamicJsonDocument jsonDoc(ESP.getMaxFreeBlockSize() - 512);
+#endif
+    // Deserialization des Requests
+    DeserializationError error = deserializeJson(jsonDoc, server.arg(&quot;plain&quot;));
+
+    switch (error.code()) {
+      case DeserializationError::Ok:
+        Serial.println(&quot;Deserialization erfolgreich&quot;);
+        break;
+      case DeserializationError::EmptyInput:
+        server.send(400, &quot;text/plain&quot;, &quot;Empty Input&quot;);
+        Serial.println(&quot;Empty Input&quot;);
+        return;
+      case DeserializationError::IncompleteInput:
+        server.send(400, &quot;text/plain&quot;, &quot;Incomplete Input&quot;);
+        Serial.println(&quot;Incomplete Input&quot;);
+        return;
+      case DeserializationError::InvalidInput:
+        server.send(400, &quot;text/plain&quot;, &quot;JSON Invalid&quot;);
+        Serial.println(&quot;JSON Invalid&quot;);
+        return;
+      case DeserializationError::NoMemory:
+        server.send(413, &quot;text/plain&quot;, &quot;No Memory&quot;);
+        Serial.println(&quot;kein Memory&quot;);
+        return;
+      case DeserializationError::TooDeep:
+        server.send(413, &quot;text/plain&quot;, &quot;Too Deep&quot;);
+        Serial.println(&quot;Too Deep&quot;);
+        return;
+      default:
+        server.send(400, &quot;text/plain&quot;, &quot;Deserialization failed&quot;);
+        Serial.println(&quot;Deserialization Fehler&quot;);
+        return;
+    }
+
+    // Request Format
+    // hexValues: [SkaliertesBildAlsCCodeArray],
+    // size: [imgWidth, imgHeight]
+
+    JsonObject root = jsonDoc.as&lt;JsonObject&gt;();
+    JsonArray imgSize = root[&quot;size&quot;].as&lt;JsonArray&gt;();
+    JsonArray imgValues = root[&quot;hexValues&quot;].as&lt;JsonArray&gt;();
+    int valuesCount = imgValues.size();
+
+    // CCodeArray als uint16_t umwandeln
+    uint16_t sentImage[valuesCount];
+    for (int i = 0; i &lt; valuesCount; i++) {
+      sentImage[i] = strtol(imgValues[i].as&lt;String&gt;().c_str(), NULL, 0);
+    }
+
+    // sende Rückmeldung, dass das Bild verarbeitet wurde
+    server.send(200, &quot;text/plain&quot;, &quot;Bild wurde erfolgreich verarbeitet!&quot;);
+    Serial.println(&quot;Bild verarbeitet&quot;);
+    startTextLoop = false;
+    startImageLoop = false;
+    // Bild anzeigen in der richtigen Größe
+    drawImage(sentImage, strtol(imgSize[0].as&lt;String&gt;().c_str(), NULL, 0), strtol(imgSize[1].as&lt;String&gt;().c_str(), NULL, 0));
+  }
+}
+
+// /gif endpoint, Bild Behandlung &amp; Anzeige
+void handleGif() {
+  if (server.method() != HTTP_POST) {
+    // keine gültige Methode, sende HTTP Response 405
+    server.send(405, &quot;text/plain&quot;, &quot;Method Not Allowed&quot;);
+  } else {
+    // ist eine POST Request, Bild in JSON Format entgegennehmen
+    Serial.println(&quot;Gif entgegengenommen&quot;);
+
+#ifdef ESP32
+    DynamicJsonDocument jsonDoc(ESP.getMaxAllocHeap());
+#endif
+#ifdef ESP8266
+    DynamicJsonDocument jsonDoc(ESP.getMaxFreeBlockSize() - 512);
+#endif
+    // Deserialization des Requests
+    DeserializationError error = deserializeJson(jsonDoc, server.arg(&quot;plain&quot;));
+
+    switch (error.code()) {
+      case DeserializationError::Ok:
+        Serial.println(&quot;Deserialization erfolgreich&quot;);
+        break;
+      case DeserializationError::EmptyInput:
+        server.send(400, &quot;text/plain&quot;, &quot;Empty Input&quot;);
+        Serial.println(&quot;Empty Input&quot;);
+        return;
+      case DeserializationError::IncompleteInput:
+        server.send(400, &quot;text/plain&quot;, &quot;Incomplete Input&quot;);
+        Serial.println(&quot;Incomplete Input&quot;);
+        return;
+      case DeserializationError::InvalidInput:
+        server.send(400, &quot;text/plain&quot;, &quot;JSON Invalid&quot;);
+        Serial.println(&quot;JSON Invalid&quot;);
+        return;
+      case DeserializationError::NoMemory:
+        server.send(413, &quot;text/plain&quot;, &quot;No Memory&quot;);
+        Serial.println(&quot;kein Memory&quot;);
+        return;
+      case DeserializationError::TooDeep:
+        server.send(413, &quot;text/plain&quot;, &quot;Too Deep&quot;);
+        Serial.println(&quot;Too Deep&quot;);
+        return;
+      default:
+        server.send(400, &quot;text/plain&quot;, &quot;Deserialization failed&quot;);
+        Serial.println(&quot;Deserialization Fehler&quot;);
+        return;
+    }
+
+    // Request Format
+    // delays : [arrayOfDelays]
+    // frames : [size, hexValues]
+
+    JsonObject root = jsonDoc.as&lt;JsonObject&gt;();
+    delays = root[&quot;delays&quot;].as&lt;JsonArray&gt;();
+    frames = root[&quot;frames&quot;].as&lt;JsonArray&gt;();
+
+    server.send(200, &quot;text/plain&quot;, &quot;Bild wurde erfolgreich verarbeitet!&quot;);
+
+    isGif = true;
+    startTextLoop = false;
+    startImageLoop = true;
+  }
+}
+
+// /movingimages endpoint, Bild Behandlung &amp; Anzeige
+void handleMovingImg() {
+  if (server.method() != HTTP_POST) {
+    // keine gültige Methode, sende HTTP Response 405
+    server.send(405, &quot;text/plain&quot;, &quot;Method Not Allowed&quot;);
+  } else {
+    // ist eine POST Request, Bild in JSON Format entgegennehmen
+    Serial.println(&quot;Gif entgegengenommen&quot;);
+
+#ifdef ESP32
+    DynamicJsonDocument jsonDoc(ESP.getMaxAllocHeap());
+#endif
+#ifdef ESP8266
+    DynamicJsonDocument jsonDoc(ESP.getMaxFreeBlockSize() - 512);
+#endif
+    // Deserialization des Requests
+    DeserializationError error = deserializeJson(jsonDoc, server.arg(&quot;plain&quot;));
+
+    switch (error.code()) {
+      case DeserializationError::Ok:
+        Serial.println(&quot;Deserialization erfolgreich&quot;);
+        break;
+      case DeserializationError::EmptyInput:
+        server.send(400, &quot;text/plain&quot;, &quot;Empty Input&quot;);
+        Serial.println(&quot;Empty Input&quot;);
+        return;
+      case DeserializationError::IncompleteInput:
+        server.send(400, &quot;text/plain&quot;, &quot;Incomplete Input&quot;);
+        Serial.println(&quot;Incomplete Input&quot;);
+        return;
+      case DeserializationError::InvalidInput:
+        server.send(400, &quot;text/plain&quot;, &quot;JSON Invalid&quot;);
+        Serial.println(&quot;JSON Invalid&quot;);
+        return;
+      case DeserializationError::NoMemory:
+        server.send(413, &quot;text/plain&quot;, &quot;No Memory&quot;);
+        Serial.println(&quot;kein Memory&quot;);
+        return;
+      case DeserializationError::TooDeep:
+        server.send(413, &quot;text/plain&quot;, &quot;Too Deep&quot;);
+        Serial.println(&quot;Too Deep&quot;);
+        return;
+      default:
+        server.send(400, &quot;text/plain&quot;, &quot;Deserialization failed&quot;);
+        Serial.println(&quot;Deserialization Fehler&quot;);
+        return;
+    }
+
+    // Request Format
+    // delay : delay value
+    // frames : [size, hexValues]    
+
+    JsonObject root = jsonDoc.as&lt;JsonObject&gt;();
+    frameDelay = root[&quot;delay&quot;].as&lt;uint16_t&gt;();
+    frames = root[&quot;images&quot;].as&lt;JsonArray&gt;();
+
+    server.send(200, &quot;text/plain&quot;, &quot;Bild wurde erfolgreich verarbeitet!&quot;);
+
+    isGif = false;
+    startTextLoop = false;
+    startImageLoop = true;
+  }
+}
+
+// /size endpoint für GET Displaygröße
+void handleSize() {
+  if (server.method() != HTTP_GET) {
+    // keine gültige Methode, sende HTTP Response 405
+    server.send(405, &quot;text/plain&quot;, &quot;Method Not Allowed&quot;);
+    Serial.println(&quot;Method not allowed&quot;);
+  } else {
+    // ist eine GET Request, sende die einprogrammierte Displaygröße an Client
+    // als JSON Array in der Format size: [width, height]
+    StaticJsonDocument&lt;200&gt; doc;
+    JsonArray sizeArray = doc.createNestedArray(&quot;size&quot;);
+    sizeArray.add(matrix_width);
+    sizeArray.add(matrix_height);
+    String jsonString;
+    serializeJson(doc, jsonString);
+    server.send(200, &quot;application/json&quot;, jsonString);
+    Serial.println(jsonString + &quot; an Client gesendet&quot;);
+  }
+}
+
+// keine gültige / bekannte endpoints
+void handleNotFound() {
+  // sende 404 File Not Found
+  String message = &quot;File Not Found\n\n&quot;;
+  message += &quot;URI: &quot;;
+  message += server.uri();
+  message += &quot;\nMethod: &quot;;
+  message += (server.method() == HTTP_GET) ? &quot;GET&quot; : &quot;POST&quot;;
+  message += &quot;\nArguments: &quot;;
+  message += server.args();
+  message += &quot;\n&quot;;
+  for (uint8_t i = 0; i &lt; server.args(); i++) { message += &quot; &quot; + server.argName(i) + &quot;: &quot; + server.arg(i) + &quot;\n&quot;; }
+  server.send(404, &quot;text/plain&quot;, message);
+  Serial.println(&quot;404 File Not Found&quot;);
+}</code></pre></li></ul><ul id="c02f93a9-563c-478c-98e4-bd7897f29a80" class="bulleted-list"><li style="list-style-type:disc">Board <code>loop()</code> <pre id="a2d6aa97-aadb-4bcf-b275-f6e468fc9e2c" class="code"><code>// ---------------------------------------
+// Server handle Client in einer Schleife
+// ---------------------------------------
+void loop() {
+  server.handleClient();
+
+  if (startTextLoop) {
+    // Lauftext in der ausgewählten Farbe
+    scrollText(scroll_text, text_color);
+  }
+
+  if (startImageLoop) {
+    for (int j = 0; j &lt; frames.size(); j++) {
+      JsonArray sizeArray = frames[j][&quot;size&quot;];
+      int width = strtol(sizeArray[0].as&lt;String&gt;().c_str(), NULL, 0);
+      int height = strtol(sizeArray[1].as&lt;String&gt;().c_str(), NULL, 0);
+
+      JsonArray image = frames[j][&quot;hexValues&quot;];
+      int valuesCount = image.size();
+      // CCodeArray als uint16_t umwandeln
+      uint16_t sentImage[valuesCount];
+      for (int i = 0; i &lt; valuesCount; i++) {
+        sentImage[i] = strtol(image[i].as&lt;String&gt;().c_str(), NULL, 0);
+      }
+
+      drawImage(sentImage, width, height);
+
+      if (isGif) {
+        delay(delays[j]);
+      } else {
+        delay(frameDelay);
+      }
+    }
+  }
+}</code></pre></li></ul></details></li></ul></div></details><h1 id="a6bffd54-28cd-4486-be47-8fd8a01a5864" class="">Einschränkungen</h1><ul id="c2c264a2-6d97-4a09-bf5a-b8ede74640ed" class="bulleted-list"><li style="list-style-type:disc">Payload darf nicht zu groß sein (weniger Bilder oder kleinere Bilder)</li></ul><h1 id="387f3772-5f08-4f40-bbec-5b7abfb2e06a" class="">Troubleshooting</h1><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">ESP package header timeout</summary><div class="indented"><p id="cec9c460-9c08-4b2f-b519-77f6ed445cc2" class="">Verbinden Sie <code>GPIO15</code> mit <code>GND</code></p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Anzeigefehler</summary><div class="indented"><ul id="e1738e67-817e-4061-8f44-9c5806151344" class="bulleted-list"><li style="list-style-type:disc">Versuchen Sie alle möglichen Verbindungen und Konfigurationen (Pin E, Scan Pattern, Mux Pattern usw)</li></ul><ul id="f5cf12f2-76e4-4c67-b4f3-43704f5e47a0" class="bulleted-list"><li style="list-style-type:disc">Stromversorgung muss ausreichend sein (Netzteil 5V 15A)</li></ul><p id="de018f9d-7daa-4cd8-98a7-4082bcd055ca" class="">
+</p></div></details></div></article></body></html>
